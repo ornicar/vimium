@@ -239,6 +239,11 @@ function goUp() {
   }
 }
 
+function githubSwitchContext() {
+    $('.contextswitch').toggleClass("activated");
+    activateLinkHintsMode();
+}
+
 function toggleViewSource() {
   getCurrentUrlHandlers.push(toggleViewSourceCallback);
 

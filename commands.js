@@ -127,6 +127,8 @@ function clearKeyMappingsAndSetDefaults() {
   mapKeyToCommand('t', 'createTab');
   mapKeyToCommand('d', 'removeTab');
   mapKeyToCommand('u', 'restoreTab');
+
+  mapKeyToCommand('gc', 'githubSwitchContext');
 }
 
 // Navigating the current page:
@@ -175,6 +177,8 @@ addCommand('createTab',           'Create new tab',    true);
 addCommand('removeTab',           'Close current tab', true);
 addCommand('restoreTab',          "Restore closed tab", true);
 
+// GitHub
+addCommand('githubSwitchContext', 'Switch GitHub context');
 
 // An ordered listing of all available commands, grouped by type. This is the order they will
 // be shown in the help page.
@@ -192,5 +196,7 @@ var commandGroups = {
   tabManipulation:
     ["nextTab", "previousTab", "createTab", "removeTab", "restoreTab"],
   misc:
-    ["showHelp"]
+    ["showHelp"],
+  gitHub:
+    ["githubSwitchContext"]
 };
