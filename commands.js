@@ -97,7 +97,7 @@ function clearKeyMappingsAndSetDefaults() {
   mapKeyToCommand('<c-f>', 'scrollFullPageDown');
   mapKeyToCommand('<c-b>', 'scrollFullPageUp');
   mapKeyToCommand('r', 'reload');
-  mapKeyToCommand('gf', 'toggleViewSource');
+  mapKeyToCommand('gs', 'toggleViewSource');
 
   mapKeyToCommand('i', 'enterInsertMode');
 
@@ -110,8 +110,9 @@ function clearKeyMappingsAndSetDefaults() {
 
   mapKeyToCommand('gi', 'focusInput');
 
-  mapKeyToCommand('f', 'activateLinkHintsMode');
-  mapKeyToCommand('F', 'activateLinkHintsModeToOpenInNewTab');
+  mapKeyToCommand('f',     'activateLinkHintsMode');
+  mapKeyToCommand('F',     'activateLinkHintsModeToOpenInNewTab');
+  mapKeyToCommand('<a-f>', 'activateLinkHintsModeWithQueue');
 
   mapKeyToCommand('/', 'enterFindMode');
   mapKeyToCommand('n', 'performFind');
@@ -128,6 +129,7 @@ function clearKeyMappingsAndSetDefaults() {
   mapKeyToCommand('u', 'restoreTab');
 
   mapKeyToCommand('gc', 'githubSwitchContext');
+  mapKeyToCommand('gf', 'nextFrame');
 }
 
 // Navigating the current page:
@@ -157,6 +159,7 @@ addCommand('focusInput',          'Focus the first (or n-th) text box on the pag
 
 addCommand('activateLinkHintsMode',               'Enter link hints mode to open links in current tab');
 addCommand('activateLinkHintsModeToOpenInNewTab', 'Enter link hints mode to open links in new tab');
+addCommand('activateLinkHintsModeWithQueue',      'Enter link hints mode to open multiple links in a new tab');
 
 addCommand('enterFindMode',        'Enter find mode');
 addCommand('performFind',          'Cycle forward to the next find match');
@@ -182,6 +185,8 @@ addCommand('githubSwitchContext', 'Switch GitHub context');
 // Translation
 addCommand('goToTranslate', 'Open a translation tab');
 
+addCommand('nextFrame',           "Cycle forward to the next frame on the page", true);
+
 // An ordered listing of all available commands, grouped by type. This is the order they will
 // be shown in the help page.
 var commandGroups = {
@@ -191,8 +196,8 @@ var commandGroups = {
      "scrollPageUp", "scrollFullPageDown",
      "reload", "toggleViewSource", "zoomIn", "zoomOut", "copyCurrentUrl", "goUp",
      "enterInsertMode", "focusInput",
-     "activateLinkHintsMode", "activateLinkHintsModeToOpenInNewTab",
-     "enterFindMode", "performFind", "performBackwardsFind"],
+     "activateLinkHintsMode", "activateLinkHintsModeToOpenInNewTab", "activateLinkHintsModeWithQueue",
+     "enterFindMode", "performFind", "performBackwardsFind", "nextFrame"],
   historyNavigation:
     ["goBack", "goForward"],
   tabManipulation:
