@@ -121,8 +121,7 @@ function clearKeyMappingsAndSetDefaults() {
 
   mapKeyToCommand('K', 'nextTab');
   mapKeyToCommand('J', 'previousTab');
-  mapKeyToCommand('gt', 'nextTab');
-  mapKeyToCommand('gT', 'previousTab');
+  mapKeyToCommand('gt', 'translate');
 
   mapKeyToCommand('t', 'createTab');
   mapKeyToCommand('d', 'removeTab');
@@ -179,6 +178,9 @@ addCommand('restoreTab',          "Restore closed tab", true);
 
 // GitHub
 addCommand('githubSwitchContext', 'Switch GitHub context');
+
+// Translation
+addCommand('goToTranslate', 'Open a translation tab');
 
 // An ordered listing of all available commands, grouped by type. This is the order they will
 // be shown in the help page.

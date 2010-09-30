@@ -279,6 +279,10 @@
     chrome.tabs.create({}, function(tab) { callback(); });
   }
 
+    function goToTranslate(callback) {
+        chrome.tabs.create({url: 'http://translate.google.com'}, function(tab) { callback(); });
+    }
+
   function nextTab(callback) { selectTab(callback, "next"); }
   function previousTab(callback) { selectTab(callback, "previous"); }
 
