@@ -241,7 +241,7 @@ function goUp() {
 
 function githubSwitchContext() {
     $('.contextswitch').toggleClass("activated");
-    activateLinkHintsMode();
+    if($('.contextswitch').length) activateLinkHintsMode();
 }
 
 function toggleViewSource() {
