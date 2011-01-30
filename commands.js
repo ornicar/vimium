@@ -107,6 +107,7 @@ function clearKeyMappingsAndSetDefaults() {
 
   mapKeyToCommand('zi', 'zoomIn');
   mapKeyToCommand('zo', 'zoomOut');
+  mapKeyToCommand('z0', 'zoomReset');
 
   mapKeyToCommand('gi', 'focusInput');
 
@@ -117,6 +118,9 @@ function clearKeyMappingsAndSetDefaults() {
   mapKeyToCommand('/', 'enterFindMode');
   mapKeyToCommand('n', 'performFind');
   mapKeyToCommand('N', 'performBackwardsFind');
+
+  mapKeyToCommand('[[', 'goPrevious');
+  mapKeyToCommand(']]', 'goNext');
 
   mapKeyToCommand('yy', 'copyCurrentUrl');
 
@@ -151,6 +155,7 @@ addCommand('reload',              'Reload the page');
 addCommand('toggleViewSource',    'View page source');
 addCommand('zoomIn',              'Zoom in');
 addCommand('zoomOut',             'Zoom out');
+addCommand('zoomReset',             'Reset zoom to default value');
 addCommand('copyCurrentUrl',      'Copy the current URL to the clipboard');
 
 addCommand('enterInsertMode',     'Enter insert mode');
@@ -164,6 +169,9 @@ addCommand('activateLinkHintsModeWithQueue',      'Enter link hints mode to open
 addCommand('enterFindMode',        'Enter find mode');
 addCommand('performFind',          'Cycle forward to the next find match');
 addCommand('performBackwardsFind', 'Cycle backward to the previous find match');
+
+addCommand('goPrevious',          'Follow the link labeled previous or <');
+addCommand('goNext',              'Follow the link labeled next or >');
 
 // Navigating your history:
 addCommand('goBack',              'Go back in history');
@@ -194,9 +202,10 @@ var commandGroups = {
     ["scrollDown", "scrollUp", "scrollLeft", "scrollRight",
      "scrollToTop", "scrollToBottom", "scrollToLeft", "scrollToRight", "scrollPageDown",
      "scrollPageUp", "scrollFullPageUp", "scrollFullPageDown",
-     "reload", "toggleViewSource", "zoomIn", "zoomOut", "copyCurrentUrl", "goUp",
+     "reload", "toggleViewSource", "zoomIn", "zoomOut", "zoomReset", "copyCurrentUrl", "goUp",
      "enterInsertMode", "focusInput",
      "activateLinkHintsMode", "activateLinkHintsModeToOpenInNewTab", "activateLinkHintsModeWithQueue",
+     "goPrevious", "goNext",
      "enterFindMode", "performFind", "performBackwardsFind", "nextFrame"],
   historyNavigation:
     ["goBack", "goForward"],
