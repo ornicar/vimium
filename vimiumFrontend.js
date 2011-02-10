@@ -61,7 +61,8 @@ function initializePreDomReady() {
   checkIfEnabledForUrl();
 
   var getZoomLevelPort = chrome.extension.connect({ name: "getZoomLevel" });
-  getZoomLevelPort.postMessage({ domain: window.location.host });
+  if (window.self == window.parent)
+    getZoomLevelPort.postMessage({ domain: window.location.host });
 
   chrome.extension.sendRequest({handler: "getLinkHintCss"}, function (response) {
     linkHintCss = response.linkHintCss;
@@ -220,18 +221,23 @@ function setPageZoomLevel(zoomLevel, showUINotification) {
 }
 
 function zoomIn() {
-  setPageZoomLevel(currentZoomLevel += 20, true);
-  saveZoomLevel(window.location.host, currentZoomLevel);
+  currentZoomLevel += 20;
+  setAndSaveZoom();
 }
 
 function zoomOut() {
-  setPageZoomLevel(currentZoomLevel -= 20, true);
-  saveZoomLevel(window.location.host, currentZoomLevel);
+  currentZoomLevel -= 20;
+  setAndSaveZoom();
 }
 
 function zoomReset() {
-  setPageZoomLevel(100, true);
-  saveZoomLevel(window.location.host, 100);
+  currentZoomLevel = 100;
+  setAndSaveZoom();
+}
+
+function setAndSaveZoom() {
+  setPageZoomLevel(currentZoomLevel, true);
+  saveZoomLevel(window.location.host, currentZoomLevel);
 }
 
 function scrollToBottom() { window.scrollTo(window.pageXOffset, document.body.scrollHeight); }
@@ -640,12 +646,18 @@ function showHelpDialog(html, fid) {
   isShowingHelpDialog = true;
   var container = document.createElement("div");
   container.id = "vimiumHelpDialogContainer";
+
+  document.body.appendChild(container);
+
   container.innerHTML = html;
+  // This is necessary because innerHTML does not evaluate javascript embedded in <script> tags.
+  var scripts = Array.prototype.slice.call(container.getElementsByTagName("script"));
+  scripts.forEach(function(script) { eval(script.text); });
+
   container.getElementsByClassName("closeButton")[0].addEventListener("click", hideHelpDialog, false);
   container.getElementsByClassName("optionsPage")[0].addEventListener("click",
       function() { chrome.extension.sendRequest({ handler: "openOptionsPageInNewTab" }); }, false);
 
-  document.body.appendChild(container);
   var dialog = document.getElementById("vimiumHelpDialog");
   dialog.style.zIndex = "99999998";
   var zoomFactor = currentZoomLevel / 100.0;
